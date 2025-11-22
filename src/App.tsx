@@ -407,20 +407,15 @@ function App() {
   return (
     <div className="min-h-screen bg-slate-50">
       <header className="border-b border-slate-200 bg-white/80 backdrop-blur">
-        <div className="mx-auto flex max-w-6xl items-center justify-between px-4 py-4">
+        <div className="mx-auto flex w-full items-center justify-between px-6 py-4">
           <div>
             <p className="text-xs uppercase tracking-wide text-slate-500">Plotterfun</p>
             <h1 className="text-2xl font-semibold text-slate-900">Vector art playground</h1>
           </div>
-          <Button variant="outline" asChild>
-            <a href="https://github.com/mitxela/plotterfun" target="_blank" rel="noreferrer">
-              View source
-            </a>
-          </Button>
         </div>
       </header>
 
-      <main className="mx-auto grid max-w-6xl gap-6 px-4 py-6 lg:grid-cols-[360px_1fr]">
+      <main className="mx-auto grid w-full gap-6 px-6 py-6 lg:grid-cols-[420px_1fr]">
         <section className="space-y-6">
           <div className="rounded-lg border border-slate-200 bg-white p-4 shadow-sm">
             <Tabs value={activeTab} onValueChange={handleTabChange}>
@@ -587,22 +582,24 @@ function App() {
               <Button onClick={processImage} disabled={!imageSet || isLoadingControls}>
                 {isProcessing ? 'Processing...' : 'Run algorithm'}
               </Button>
-              <Button variant="outline" onClick={downloadSvg} disabled={!svgPath}>
-                Download SVG
-              </Button>
               <span className="text-sm text-slate-500">{status}</span>
             </div>
           </div>
         </section>
 
         <section className="rounded-lg border border-slate-200 bg-white p-4 shadow-sm">
-          <div className="flex items-center justify-between pb-3">
+          <div className="flex flex-wrap items-center justify-between gap-3 pb-3">
             <div>
               <p className="text-xs uppercase tracking-wide text-slate-500">Preview</p>
               <p className="text-sm text-slate-700">Drag the image to position it and scroll to zoom.</p>
             </div>
-            <div className="rounded-full bg-slate-100 px-3 py-1 text-xs font-medium text-slate-700">
-              {configRef.current.width || canvasSize.width} × {configRef.current.height || canvasSize.height}
+            <div className="flex items-center gap-3">
+              <Button variant="outline" onClick={downloadSvg} disabled={!svgPath}>
+                Download SVG
+              </Button>
+              <div className="rounded-full bg-slate-100 px-3 py-1 text-xs font-medium text-slate-700">
+                {configRef.current.width || canvasSize.width} × {configRef.current.height || canvasSize.height}
+              </div>
             </div>
           </div>
           <div className="relative w-full overflow-auto rounded-md border border-slate-100 bg-slate-50 p-4">
